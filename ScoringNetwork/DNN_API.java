@@ -16,17 +16,17 @@ public class Main6 {
 		System.out.println(access_token);
 		//String access_token = "";
 		try {
-			m.get_text("2233ÄïÊÇ·ñĞÅÑö¡áÕÜÑ§£¿", "https://aip.baidubce.com/rest/2.0/antispam/v2/spam", access_token);
+			m.get_text("2233å¨˜æ˜¯å¦ä¿¡ä»°â™‚å“²å­¦ï¼Ÿ", "https://aip.baidubce.com/rest/2.0/antispam/v2/spam", access_token);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
  
 	public String gettoken() {
-		// ¹ÙÍø»ñÈ¡µÄ API Key ¸üĞÂÎªÄã×¢²áµÄ
-		String clientId = "BhVBrZNxRZTGf7SCyGhCiw9c";
-		// ¹ÙÍø»ñÈ¡µÄ Secret Key ¸üĞÂÎªÄã×¢²áµÄ
-		String clientSecret = "w2rV6yMU1EUBSIKy2Tfrixbs7dZjrfWH";
+		// å®˜ç½‘è·å–çš„ API Key æ›´æ–°ä¸ºä½ æ³¨å†Œçš„
+		String clientId = "Vx3I23E9MD14B3FSwLC53ecU";
+		// å®˜ç½‘è·å–çš„ Secret Key æ›´æ–°ä¸ºä½ æ³¨å†Œçš„
+		String clientSecret = "FVizWP3CXO5zTp9UFUcyYD0xIBtWj24M";
 		return getAuth(clientId, clientSecret);
 	}
 	
@@ -34,21 +34,21 @@ public class Main6 {
 		//
 		String authHost = "https://aip.baidubce.com/oauth/2.0/token?";
 		String getAccessTokenUrl = authHost
-				// 1. grant_typeÎª¹Ì¶¨²ÎÊı
+				// 1. grant_typeä¸ºå›ºå®šå‚æ•°
 				+ "grant_type=client_credentials"
-				// 2. ¹ÙÍø»ñÈ¡µÄ API Key
+				// 2. å®˜ç½‘è·å–çš„ API Key
 				+ "&client_id=" + ak
-				// 3. ¹ÙÍø»ñÈ¡µÄ Secret Key
+				// 3. å®˜ç½‘è·å–çš„ Secret Key
 				+ "&client_secret=" + sk;
 		try {
 			URL realUrl = new URL(getAccessTokenUrl);
-			// ´ò¿ªºÍURLÖ®¼äµÄÁ¬½Ó
+			// æ‰“å¼€å’ŒURLä¹‹é—´çš„è¿æ¥
 			HttpURLConnection connection = (HttpURLConnection) realUrl.openConnection();
 			connection.setRequestMethod("GET");
 			connection.connect();
-			// »ñÈ¡ËùÓĞÏìÓ¦Í·×Ö¶Î
+			// è·å–æ‰€æœ‰å“åº”å¤´å­—æ®µ
 			//Map<String, List<String>> map = connection.getHeaderFields();
-			// ¶¨Òå BufferedReaderÊäÈëÁ÷À´¶ÁÈ¡URLµÄÏìÓ¦
+			// å®šä¹‰ BufferedReaderè¾“å…¥æµæ¥è¯»å–URLçš„å“åº”
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String result = "";
 			String line;
@@ -56,13 +56,13 @@ public class Main6 {
 				result += line;
 			}
 			/**
-			 * ·µ»Ø½á¹ûÊ¾Àı
+			 * è¿”å›ç»“æœç¤ºä¾‹
 			 */
 			JSONObject jsonObject = new JSONObject(result);
 			String access_token = jsonObject.getString("access_token");
 			return access_token;
 		} catch (Exception e) {
-			System.err.printf("»ñÈ¡tokenÊ§°Ü£¡");
+			System.err.printf("è·å–tokenå¤±è´¥ï¼");
 			e.printStackTrace(System.err);
 		}
 		return null;
@@ -72,9 +72,9 @@ public class Main6 {
 		String param;
 		String data;
 		try {
-			//ÉèÖÃÇëÇóµÄ±àÂë
+			//è®¾ç½®è¯·æ±‚çš„ç¼–ç 
 			param = "content="+URLEncoder.encode(content,"UTF-8");
-			//·¢ËÍ²¢È¡µÃ½á¹û
+			//å‘é€å¹¶å–å¾—ç»“æœ
 			data = HttpUtil.post(url, accessToken, param);
 			System.out.println(data);
 		} catch (Exception e) {
